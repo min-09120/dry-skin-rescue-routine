@@ -6,18 +6,22 @@
   <title>나의 악건성 구조 루틴</title>
   <meta name="description" content="가지고 있는 제품으로 만드는 악건성 피부 루틴과 초보 메이크업 가이드" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2311235a'/%3E%3Cpath d='M32 11C25 22 18 30 18 39a14 14 0 0 0 28 0c0-9-7-17-14-28Z' fill='%23a9d6ff'/%3E%3Cpath d='M25 42c3 4 10 5 15 0' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js" defer></script>
   <style>
     :root{--ink:#10204d;--paper:#f7f5ef;--white:#fff;--sky:#a9d6ff;--blue:#2667ff;--orange:#ff6a3d;--mint:#bdf3dc;--line:rgba(16,32,77,.16);--muted:#5f6680;--shadow:0 20px 55px rgba(17,35,90,.14)}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;font-size:16px;line-height:1.65}button,a{font:inherit}a{color:inherit}.shell{max-width:1180px;margin:auto;padding:0 24px}.topbar{position:sticky;top:0;z-index:20;background:rgba(247,245,239,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topbar .shell{height:66px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.04em}.drop{width:26px;height:26px;display:grid;place-items:center;background:var(--ink);color:var(--sky);border-radius:9px}.nav{display:flex;gap:18px;font-weight:750;font-size:.9rem}.nav a{text-decoration:none}.hero{padding:54px 0 68px;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:52px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--ink);border-radius:999px;font-weight:850;font-size:.82rem;background:var(--mint)}h1{font-size:clamp(3.1rem,7vw,6.8rem);line-height:.9;letter-spacing:-.085em;margin:24px 0 24px;max-width:760px}.hero-copy{font-size:1.12rem;max-width:610px;color:#384263}.hero-copy strong{color:var(--ink)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{border:1px solid var(--ink);padding:13px 18px;border-radius:13px;text-decoration:none;font-weight:850;display:inline-flex;align-items:center;gap:8px}.btn.primary{background:var(--ink);color:white}.hero-visual{position:relative;min-height:570px}.photo-main{position:absolute;inset:0 30px 0 0;width:calc(100% - 30px);height:100%;object-fit:cover;border-radius:36px;box-shadow:var(--shadow);border:1px solid var(--ink)}.sticker{position:absolute;right:0;top:26px;width:154px;height:154px;border-radius:50%;background:var(--orange);color:white;border:2px solid var(--ink);display:grid;place-items:center;text-align:center;font-weight:900;line-height:1.25;transform:rotate(8deg);box-shadow:8px 8px 0 var(--ink)}.mini-note{position:absolute;left:-30px;bottom:28px;background:#fff;padding:16px 18px;border:1px solid var(--ink);border-radius:16px;box-shadow:6px 6px 0 var(--sky);max-width:250px;font-weight:750}.rule-strip{background:var(--ink);color:white;padding:18px 0}.rule-strip .shell{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;font-weight:800}.rule-strip span::before{content:'✦';color:var(--sky);margin-right:9px}.section{padding:90px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px}.kicker{color:var(--blue);font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem}.section h2{font-size:clamp(2.2rem,4.5vw,4.4rem);line-height:1.03;letter-spacing:-.06em;margin:6px 0}.section-lead{max-width:560px;color:var(--muted)}.routine-panel{background:#fff;border:1px solid var(--ink);border-radius:28px;box-shadow:10px 10px 0 var(--sky);overflow:hidden}.tabs{display:flex;gap:4px;padding:10px;background:#edf5ff;border-bottom:1px solid var(--ink);overflow-x:auto}.tab{white-space:nowrap;border:0;background:transparent;color:var(--ink);padding:12px 18px;border-radius:12px;font-weight:850;cursor:pointer}.tab.active{background:var(--ink);color:white}.routine{display:none;padding:30px}.routine.active{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.step{padding:20px;border:1px solid var(--line);border-radius:18px;background:#fbfcff;min-height:210px}.step-num{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:white;font-weight:900;margin-bottom:34px}.step h3{font-size:1.08rem;margin:0 0 8px}.step p{font-size:.91rem;color:var(--muted);margin:0}.step small{display:block;margin-top:14px;color:var(--blue);font-weight:800}.edit-note{margin-top:26px;padding:16px 18px;border-left:5px solid var(--orange);background:#fff5f1;font-weight:700}.inventory{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.product-card{grid-column:span 4;background:white;border:1px solid var(--line);border-radius:22px;padding:22px;position:relative;min-height:248px}.product-card.wide{grid-column:span 6}.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--sky);font-size:.75rem;font-weight:900}.tag.core{background:var(--mint)}.tag.caution{background:#ffd4c8}.product-card h3{font-size:1.2rem;line-height:1.3;margin:14px 0 8px}.product-card p{color:var(--muted);margin:0}.verdict{position:absolute;bottom:18px;left:22px;right:22px;padding-top:12px;border-top:1px solid var(--line);font-weight:850}.photo-band{margin-top:30px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.photo-band img{width:100%;height:370px;object-fit:cover;border-radius:24px;border:1px solid var(--ink)}.photo-band img:last-child{object-position:center 58%}.makeup-wrap{display:grid;grid-template-columns:.82fr 1.18fr;gap:32px}.makeup-card{background:var(--ink);color:white;border-radius:28px;padding:30px;position:sticky;top:92px;height:max-content}.makeup-card h3{font-size:2rem;letter-spacing:-.05em;line-height:1.15;margin:0 0 18px}.meter{display:flex;gap:7px;margin:22px 0}.meter i{height:7px;flex:1;border-radius:99px;background:rgba(255,255,255,.22)}.meter i.on{background:var(--sky)}.makeup-card ul{margin:0;padding-left:20px}.makeup-list{display:grid;gap:14px}.makeup-step{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:22px;border:1px solid var(--line);border-radius:20px;background:white}.makeup-step .n{font-size:2rem;font-weight:950;color:var(--orange);line-height:1}.makeup-step h3{margin:0 0 6px}.makeup-step p{margin:0;color:var(--muted)}.buy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.buy-card{border:1px solid var(--ink);border-radius:22px;padding:24px;background:white}.buy-card:nth-child(1){box-shadow:7px 7px 0 var(--orange)}.buy-card .priority{font-size:.78rem;font-weight:900;color:var(--blue)}.buy-card h3{margin:7px 0 12px}.buy-card ul{padding-left:20px;margin:0;color:var(--muted)}.skip{margin-top:24px;background:#e8f7ff;border-radius:20px;padding:24px;display:flex;gap:18px}.skip strong{min-width:150px}.warning{background:#fff0e9;border:1px solid #f2aa90;border-radius:22px;padding:24px}.warning h3{margin-top:0}.warning ul{margin-bottom:0}.source{font-size:.88rem;color:var(--muted);margin-top:22px}.source a{color:var(--blue)}footer{padding:50px 0 70px;border-top:1px solid var(--line)}footer .shell{display:flex;justify-content:space-between;gap:24px;align-items:center}.reset{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer}.checklist{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.check{display:flex;gap:9px;align-items:center;background:white;border:1px solid var(--line);border-radius:13px;padding:12px;font-weight:750}.check input{width:19px;height:19px;accent-color:var(--blue)}
-    @media(max-width:900px){.nav{display:none}.hero-grid,.makeup-wrap,.photo-band{grid-template-columns:1fr}.hero-visual{min-height:500px}.routine.active{grid-template-columns:repeat(2,1fr)}.product-card,.product-card.wide{grid-column:span 6}.buy-grid{grid-template-columns:1fr}.makeup-card{position:static}.checklist{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:620px){.shell{padding:0 17px}.hero{padding-top:34px}.hero-grid{gap:34px}h1{font-size:3.55rem}.hero-visual{min-height:430px}.photo-main{right:12px;width:calc(100% - 12px);border-radius:24px}.sticker{width:112px;height:112px;font-size:.82rem}.mini-note{left:8px;bottom:16px;max-width:210px;font-size:.86rem}.section{padding:64px 0}.section-head{display:block}.routine.active{grid-template-columns:1fr;padding:18px}.step{min-height:0}.step-num{margin-bottom:18px}.product-card,.product-card.wide{grid-column:span 12}.photo-band img{height:270px}.makeup-step{grid-template-columns:42px 1fr;padding:18px}.checklist{grid-template-columns:1fr}.skip{display:block}.skip strong{display:block;margin-bottom:8px}footer .shell{display:block}.reset{margin-top:18px}}
+    .analyzer-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:24px;align-items:start}.upload-card,.analysis-result{background:white;border:1px solid var(--ink);border-radius:26px;padding:26px}.upload-card{box-shadow:9px 9px 0 var(--orange)}.upload-zone{display:grid;place-items:center;min-height:260px;border:2px dashed #8da5d6;border-radius:18px;background:#f5f9ff;overflow:hidden;text-align:center;cursor:pointer}.upload-zone:hover,.upload-zone:focus-within{border-color:var(--blue);background:#edf5ff}.upload-zone input{position:absolute;width:1px;height:1px;opacity:0}.upload-prompt{padding:24px}.upload-prompt strong{display:block;font-size:1.18rem;margin-bottom:6px}.upload-preview{display:none;width:100%;height:300px;object-fit:contain;background:#eef2f7}.upload-preview.show{display:block}.analyze-actions{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}.analyze-button{border:1px solid var(--ink);background:var(--ink);color:white;padding:13px 18px;border-radius:13px;font-weight:850;cursor:pointer}.analyze-button:disabled{cursor:not-allowed;opacity:.45}.privacy-note{font-size:.86rem;color:var(--muted);margin:14px 0 0}.analysis-result{min-height:394px}.analysis-result h3{margin:0 0 8px;font-size:1.45rem}.analysis-status{color:var(--muted);margin:0}.progress-track{height:9px;background:#e7edf7;border-radius:99px;overflow:hidden;margin:20px 0;display:none}.progress-track.show{display:block}.progress-bar{height:100%;width:0;background:var(--blue);transition:width .2s}.detected-products{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.detected-products span{padding:7px 10px;border-radius:999px;background:var(--mint);font-weight:850;font-size:.86rem}.result-columns{display:none;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.result-columns.show{display:grid}.result-list{background:#f7f9fd;border:1px solid var(--line);border-radius:16px;padding:17px}.result-list h4{margin:0 0 10px}.result-list ol{margin:0;padding-left:22px}.ocr-details{margin-top:16px;color:var(--muted);font-size:.86rem}.ocr-details pre{white-space:pre-wrap;word-break:break-word;max-height:140px;overflow:auto;background:#f7f9fd;padding:12px;border-radius:12px}.analysis-limit{margin-top:16px;padding:12px 14px;background:#fff5f1;border-left:4px solid var(--orange);font-size:.9rem}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    @media(max-width:900px){.nav{display:none}.hero-grid,.makeup-wrap,.photo-band,.analyzer-grid{grid-template-columns:1fr}.hero-visual{min-height:500px}.routine.active{grid-template-columns:repeat(2,1fr)}.product-card,.product-card.wide{grid-column:span 6}.buy-grid{grid-template-columns:1fr}.makeup-card{position:static}.checklist{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.shell{padding:0 17px}.hero{padding-top:34px}.hero-grid{gap:34px}h1{font-size:3.55rem}.hero-visual{min-height:430px}.photo-main{right:12px;width:calc(100% - 12px);border-radius:24px}.sticker{width:112px;height:112px;font-size:.82rem}.mini-note{left:8px;bottom:16px;max-width:210px;font-size:.86rem}.section{padding:64px 0}.section-head{display:block}.routine.active{grid-template-columns:1fr;padding:18px}.step{min-height:0}.step-num{margin-bottom:18px}.product-card,.product-card.wide{grid-column:span 12}.photo-band img{height:270px}.makeup-step{grid-template-columns:42px 1fr;padding:18px}.checklist{grid-template-columns:1fr}.skip{display:block}.skip strong{display:block;margin-bottom:8px}footer .shell{display:block}.reset{margin-top:18px}.result-columns{grid-template-columns:1fr}.upload-card,.analysis-result{padding:19px}}
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="shell"><div class="brand"><span class="drop">◒</span> DRY SKIN RESCUE</div><nav class="nav"><a href="#routine">내 루틴</a><a href="#products">제품 판독</a><a href="#makeup">화장법</a><a href="#shopping">살 것</a></nav></div></header>
+  <header class="topbar"><div class="shell"><div class="brand"><span class="drop">◒</span> DRY SKIN RESCUE</div><nav class="nav"><a href="#analyze">사진 분석</a><a href="#routine">내 루틴</a><a href="#products">제품 판독</a><a href="#makeup">화장법</a><a href="#shopping">살 것</a></nav></div></header>
   <main>
-    <section class="hero"><div class="shell hero-grid"><div><span class="eyebrow">사진 속 화장대 기준 · 맞춤 정리</span><h1>악건성도<br><span style="color:var(--blue)">반짝일</span> 수 있어.</h1><p class="hero-copy">지금 필요한 건 제품을 더 쌓는 일이 아니라, <strong>수분을 넣고 장벽으로 잠그는 순서</strong>입니다. 이미 좋은 보습 제품을 충분히 가지고 있어요. 오늘부터 루틴을 가볍고 정확하게 바꿔봅시다.</p><div class="hero-actions"><a class="btn primary" href="#routine">오늘 루틴 보기 →</a><a class="btn" href="#makeup">들뜨지 않는 화장</a></div></div><div class="hero-visual"><img class="photo-main" src="assets/laneige.jpg" alt="사용자가 가진 라네즈 크림 스킨"/><div class="sticker">제품 추가보다<br>순서 정리가<br>먼저!</div><div class="mini-note">라네즈 크림 스킨은 토너와 가벼운 보습 사이, 첫 단계에 딱 좋아요.</div></div></div></section>
+    <section class="hero"><div class="shell hero-grid"><div><span class="eyebrow">사진 속 화장대 기준 · 맞춤 정리</span><h1>악건성도<br><span style="color:var(--blue)">꿀피부</span>가 될 수 있어.</h1><p class="hero-copy">지금 필요한 건 제품을 더 쌓는 일이 아니라, <strong>수분을 넣고 장벽으로 잠그는 순서</strong>입니다. 이미 좋은 보습 제품을 충분히 가지고 있어요. 오늘부터 루틴을 가볍고 정확하게 바꿔봅시다.</p><div class="hero-actions"><a class="btn primary" href="#analyze">내 화장대 분석하기 →</a><a class="btn" href="#routine">오늘 루틴 보기</a><a class="btn" href="#makeup">들뜨지 않는 화장</a></div></div><div class="hero-visual"><img class="photo-main" src="assets/laneige.jpg" alt="사용자가 가진 라네즈 크림 스킨"/><div class="sticker">제품 추가보다<br>순서 정리가<br>먼저!</div><div class="mini-note">라네즈 크림 스킨은 토너와 가벼운 보습 사이, 첫 단계에 딱 좋아요.</div></div></div></section>
     <div class="rule-strip"><div class="shell"><span>미지근한 물</span><span>물기 있을 때 보습</span><span>얇게 여러 번</span><span>따갑다면 즉시 중단</span></div></div>
+
+    <section class="section" id="analyze"><div class="shell"><div class="section-head"><div><div class="kicker">00 · My vanity</div><h2>내 화장대 사진으로<br>기초 순서 찾기</h2></div><p class="section-lead">제품 이름이 정면으로 보이게 찍은 사진을 올리면, 브라우저가 라벨을 읽어 제품 종류와 아침·저녁 순서를 정리해 줍니다.</p></div><div class="analyzer-grid"><div class="upload-card"><label class="upload-zone" for="vanity-upload"><input id="vanity-upload" type="file" accept="image/*" capture="environment"><span class="upload-prompt" id="upload-prompt"><strong>사진을 선택하거나 바로 찍기</strong><span>제품을 세워 라벨이 선명하게 보이도록 찍어 주세요.</span></span><img class="upload-preview" id="upload-preview" alt="선택한 화장대 사진 미리보기"></label><div class="analyze-actions"><button class="analyze-button" id="analyze-button" type="button" disabled>사진 분석하기</button><span id="file-name" aria-live="polite"></span></div><p class="privacy-note">사진은 서버에 저장되지 않고 이 브라우저 안에서만 분석됩니다.</p></div><div class="analysis-result" aria-live="polite"><h3>분석 결과</h3><p class="analysis-status" id="analysis-status">사진을 올리면 여기에 추천 순서가 나타납니다.</p><div class="progress-track" id="progress-track" role="progressbar" aria-label="사진 분석 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progress-bar"></div></div><div class="detected-products" id="detected-products"></div><div class="result-columns" id="result-columns"><div class="result-list"><h4>아침 순서</h4><ol id="morning-order"></ol></div><div class="result-list"><h4>저녁 순서</h4><ol id="evening-order"></ol></div></div><details class="ocr-details" id="ocr-details" hidden><summary>사진에서 읽은 글자 확인</summary><pre id="ocr-text"></pre></details><p class="analysis-limit" id="analysis-limit" hidden>라벨이 작거나 빛이 반사되면 제품을 놓칠 수 있어요. 결과가 이상하면 제품 정면을 가까이서 다시 찍어 주세요.</p></div></div></div></section>
 
     <section class="section" id="routine"><div class="shell"><div class="section-head"><div><div class="kicker">01 · My routine</div><h2>하루 루틴, 이 정도면 충분해요</h2></div><p class="section-lead">버튼을 눌러 상황별 순서를 확인하세요. 한 번에 세럼을 여러 개 겹치지 않는 것이 핵심입니다.</p></div><div class="routine-panel"><div class="tabs" role="tablist" aria-label="상황별 피부 루틴"><button class="tab active" data-tab="am">아침</button><button class="tab" data-tab="pm">저녁</button><button class="tab" data-tab="winter">한겨울</button><button class="tab" data-tab="sos">따갑고 갈라질 때</button></div>
       <div class="routine active" id="am"><article class="step"><div class="step-num">1</div><h3>물세안 또는 순한 세안</h3><p>밤새 기름기가 많지 않다면 미지근한 물만으로도 충분해요.</p><small>당김이 생기면 과세안 신호</small></article><article class="step"><div class="step-num">2</div><h3>크림 스킨</h3><p>라네즈 크림 스킨을 손바닥으로 1회 눌러 흡수. 화장솜은 생략해 마찰을 줄여요.</p><small>한 번 바르고 30초</small></article><article class="step"><div class="step-num">3</div><h3>크림 또는 로션</h3><p>일리윤 세라마이드 아토 로션이나 피지오겔 계열 중 하나만, 건조 부위는 한 번 더.</p><small>볼·입가 중심</small></article><article class="step"><div class="step-num">4</div><h3>선크림</h3><p>구달 어성초 선크림을 충분히 바르고 10분 정도 둔 뒤 메이크업해요.</p><small>섞어 바르지 않기</small></article></div>
@@ -44,6 +48,142 @@
   <script>
     const tabs=document.querySelectorAll('.tab');const panels=document.querySelectorAll('.routine');tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('active'));panels.forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById(t.dataset.tab).classList.add('active')}));
     const boxes=[...document.querySelectorAll('.check input')];boxes.forEach((b,i)=>{b.checked=localStorage.getItem('dry-'+i)==='1';b.addEventListener('change',()=>localStorage.setItem('dry-'+i,b.checked?'1':'0'))});document.getElementById('reset').addEventListener('click',()=>{boxes.forEach((b,i)=>{b.checked=false;localStorage.removeItem('dry-'+i)})});
+
+    const uploadInput=document.getElementById('vanity-upload');
+    const uploadPrompt=document.getElementById('upload-prompt');
+    const uploadPreview=document.getElementById('upload-preview');
+    const analyzeButton=document.getElementById('analyze-button');
+    const fileName=document.getElementById('file-name');
+    const analysisStatus=document.getElementById('analysis-status');
+    const progressTrack=document.getElementById('progress-track');
+    const progressBar=document.getElementById('progress-bar');
+    const detectedProducts=document.getElementById('detected-products');
+    const resultColumns=document.getElementById('result-columns');
+    const morningOrder=document.getElementById('morning-order');
+    const eveningOrder=document.getElementById('evening-order');
+    const ocrDetails=document.getElementById('ocr-details');
+    const ocrText=document.getElementById('ocr-text');
+    const analysisLimit=document.getElementById('analysis-limit');
+    let selectedVanityFile=null;
+    let previewUrl='';
+
+    const productRules=[
+      {key:'cleanser',label:'클렌저',pattern:/클렌[저징]|세안|cleanser|cleansing|\bfoam\b|\bwash\b/i},
+      {key:'toner',label:'토너·스킨',pattern:/토너|스킨|toner|\bskin\b|\bmist\b/i},
+      {key:'serum',label:'에센스·세럼·앰플',pattern:/세럼|앰플|에센스|serum|ampoule|essence|pdrn|hyaluron/i},
+      {key:'lotion',label:'로션·에멀전',pattern:/로션|에멀전|lotion|emulsion/i},
+      {key:'cream',label:'크림·밤',pattern:/크림|연고|cream|moisturi[sz]|\bbalm\b|ceramide|cica|vaseline|petrolatum/i},
+      {key:'oil',label:'페이스 오일',pattern:/오일|\boil\b/i},
+      {key:'sunscreen',label:'선크림',pattern:/선\s*크림|썬\s*크림|자외선|sunscreen|sun\s*cream|spf\s*\d|pa\+{2,}/i}
+    ];
+
+    function setProgress(value,status){
+      const percent=Math.max(0,Math.min(100,Math.round(value*100)));
+      progressBar.style.width=percent+'%';
+      progressTrack.setAttribute('aria-valuenow',String(percent));
+      if(status) analysisStatus.textContent=status+' · '+percent+'%';
+    }
+
+    function progressMessage(message){
+      if(message.includes('language')) return '한글·영문 읽기 준비 중';
+      if(message.includes('recognizing')) return '제품 라벨 읽는 중';
+      return '사진 분석 도구 준비 중';
+    }
+
+    async function prepareImage(file){
+      if(!('createImageBitmap' in window)) return file;
+      const bitmap=await createImageBitmap(file);
+      try{
+        const maxSide=1800;
+        const scale=Math.min(1,maxSide/Math.max(bitmap.width,bitmap.height));
+        if(scale===1) return file;
+        const canvas=document.createElement('canvas');
+        canvas.width=Math.round(bitmap.width*scale);
+        canvas.height=Math.round(bitmap.height*scale);
+        canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);
+        return await new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('사진 준비 실패')),'image/jpeg',.9));
+      }finally{bitmap.close()}
+    }
+
+    function fillList(list,items){
+      list.replaceChildren(...items.map(item=>{const li=document.createElement('li');li.textContent=item;return li}));
+    }
+
+    function renderRoutine(text){
+      const detected=productRules.filter(rule=>rule.pattern.test(text));
+      const has=key=>detected.some(item=>item.key===key);
+      detectedProducts.replaceChildren(...detected.map(item=>{const badge=document.createElement('span');badge.textContent=item.label;return badge}));
+
+      const morning=['물세안 또는 순한 세안'];
+      const evening=['순한 클렌저로 세안'];
+      if(has('toner')){morning.push('토너·스킨');evening.push('토너·스킨')}
+      if(has('serum')){morning.push('에센스·세럼·앰플 중 1개');evening.push('에센스·세럼·앰플 중 1개')}
+      if(has('lotion')){morning.push('로션·에멀전');evening.push('로션·에멀전')}
+      if(has('cream')){morning.push('크림은 건조한 부위에 얇게');evening.push('크림·밤으로 보습막 만들기')}
+      if(!has('lotion')&&!has('cream')){morning.push('보습제 — 사진에서 확인되지 않음');evening.push('장벽 크림 — 사진에서 확인되지 않음')}
+      if(has('oil')) evening.push('페이스 오일은 마지막에 소량');
+      morning.push(has('sunscreen')?'선크림':'선크림 — 사진에서 확인되지 않음');
+
+      fillList(morningOrder,morning);
+      fillList(eveningOrder,evening);
+      resultColumns.classList.add('show');
+      analysisLimit.hidden=false;
+      if(detected.length){
+        analysisStatus.textContent='제품 종류 '+detected.length+'개를 찾았어요. 같은 종류는 한 번에 하나만 사용하세요.';
+      }else{
+        analysisStatus.textContent='제품 종류를 정확히 찾지 못해 기본 순서를 보여드려요. 라벨이 크게 보이도록 다시 찍어 보세요.';
+      }
+    }
+
+    uploadInput.addEventListener('change',()=>{
+      const file=uploadInput.files&&uploadInput.files[0];
+      if(!file) return;
+      selectedVanityFile=file;
+      if(previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl=URL.createObjectURL(file);
+      uploadPreview.src=previewUrl;
+      uploadPreview.classList.add('show');
+      uploadPrompt.hidden=true;
+      analyzeButton.disabled=false;
+      fileName.textContent=file.name;
+      analysisStatus.textContent='사진이 준비됐어요. 분석 버튼을 눌러 주세요.';
+      detectedProducts.replaceChildren();
+      resultColumns.classList.remove('show');
+      ocrDetails.hidden=true;
+      analysisLimit.hidden=true;
+      progressTrack.classList.remove('show');
+    });
+
+    analyzeButton.addEventListener('click',async()=>{
+      if(!selectedVanityFile) return;
+      analyzeButton.disabled=true;
+      progressTrack.classList.add('show');
+      setProgress(0,'사진 분석 도구 준비 중');
+      detectedProducts.replaceChildren();
+      resultColumns.classList.remove('show');
+      ocrDetails.hidden=true;
+      analysisLimit.hidden=true;
+      let worker;
+      try{
+        if(!window.Tesseract) throw new Error('분석 도구를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.');
+        const image=await prepareImage(selectedVanityFile);
+        worker=await Tesseract.createWorker('kor+eng',1,{logger:message=>{if(typeof message.progress==='number') setProgress(message.progress,progressMessage(message.status||''))}});
+        const result=await worker.recognize(image,{rotateAuto:true});
+        const text=(result.data.text||'').trim();
+        setProgress(1,'분석 완료');
+        ocrText.textContent=text||'읽힌 글자가 없습니다.';
+        ocrDetails.hidden=false;
+        renderRoutine(text);
+      }catch(error){
+        analysisStatus.textContent=error&&error.message?error.message:'사진 분석 중 문제가 생겼습니다. 잠시 뒤 다시 시도해 주세요.';
+        analysisLimit.hidden=false;
+      }finally{
+        if(worker) await worker.terminate();
+        analyzeButton.disabled=false;
+      }
+    });
+
+    window.addEventListener('beforeunload',()=>{if(previewUrl) URL.revokeObjectURL(previewUrl)});
   </script>
 </body>
 </html>
